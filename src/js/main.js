@@ -9,6 +9,8 @@ const favoriteContainer = document.querySelector('.js-favorite-container');
 let resultShows = [];
 let favoriteShows = [];
 
+getLocalStorageShows();
+
 //get data from api
 
 function searchSeries() {
@@ -106,30 +108,29 @@ function handleShow(ev) {
   }
 
   paintShows();
+  paintfavorites();
 
   //paint favorite series
+}
 
-  function paintfavorites() {
-    let htmlCode = '';
-    for (const favoriteShow of favoriteShows) {
-      //console.log(favoriteShow.show.name);
-      const favShowName = favoriteShow.show.name;
-      const favshowImage = favoriteShow.show.image;
-      htmlCode += `<li class="fav-show">`;
-      let source;
-      if (favshowImage === null) {
-        source = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
-      } else {
-        source = `${favshowImage.original}`;
-      }
-      htmlCode += `<img class="fav-show--image" src="${source}" alt="poster of favorite series" />`;
-      htmlCode += `<h4 class="fav-show-title">${favShowName}</h4>`;
-      htmlCode += '</li>';
+function paintfavorites() {
+  let htmlCode = '';
+  for (const favoriteShow of favoriteShows) {
+    const favShowName = favoriteShow.show.name;
+    const favshowImage = favoriteShow.show.image;
+    htmlCode += `<li class="fav-show">`;
+    let source;
+    if (favshowImage === null) {
+      source = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
+    } else {
+      source = `${favshowImage.original}`;
     }
-    favoriteContainer.innerHTML = htmlCode;
+    htmlCode += `<img class="fav-show--image" src="${source}" alt="poster of favorite series" />`;
+    htmlCode += `<h4 class="fav-show-title">${favShowName}</h4>`;
+    htmlCode += '</li>';
   }
-
-  paintfavorites();
+  favoriteContainer.innerHTML = htmlCode;
+  storeLocalStorage();
 }
 
 //submit form
@@ -139,3 +140,22 @@ function handleForm(ev) {
 }
 
 formElement.addEventListener('submit', handleForm);
+
+//local storage
+
+function storeLocalStorage() {
+  const stringfavoriteShows = JSON.stringify(favoriteShows);
+  console.log(favoriteShows);
+  localStorage.setItem('favoriteShowsSaved', stringfavoriteShows);
+}
+
+function getLocalStorageShows() {
+  const localStorageShows = localStorage.getItem('favoriteShowsSaved');
+  if (localStorageShows === null) {
+    paintfavorites();
+  } else {
+    const arrayShows = JSON.parse(localStorageShows);
+    favoriteShows = arrayShows;
+    paintfavorites();
+  }
+}
