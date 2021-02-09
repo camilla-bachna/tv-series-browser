@@ -10,7 +10,8 @@ let resultShows = [];
 //get data from api
 
 function searchSeries() {
-  fetch('http://api.tvmaze.com/search/shows?q=' + inputElement.value)
+  const userInput = inputElement.value.toUpperCase();
+  fetch('http://api.tvmaze.com/search/shows?q=' + userInput)
     .then((response) => response.json())
     .then((data) => {
       resultShows = data;
@@ -24,19 +25,16 @@ function searchSeries() {
 function paintShows() {
   let htmlCode = '';
   for (const shows of resultShows) {
-    //console.log(shows);
-    const showName = shows.show.name;
-    const showImage = shows.show.image.original;
-    //console.log(showName);
-
-    const userInput = inputElement.value;
-    //console.log(userInput);
+    const showName = shows.show.name.toUpperCase();
+    const showImage = shows.show.image;
 
     htmlCode += '<li class="list__element">';
-    //console.log(showName.includes(userInput));
-    if (showName.includes(userInput)) {
-      //console.log('I am in');
-      htmlCode += `<img class="list__element--image" src="${showImage}" alt="poster of series" />`;
+    if (showImage === null) {
+      htmlCode +=
+        '<img class="list__element--image" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" alt="poster of series is missing" />';
+      htmlCode += `<h2>${showName}</h2>`;
+    } else {
+      htmlCode += `<img class="list__element--image" src="${showImage.original}" alt="poster of series" />`;
       htmlCode += `<h2>${showName}</h2>`;
     }
     htmlCode += '</li>';
