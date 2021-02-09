@@ -7,9 +7,6 @@ body {
 
 .list__element {
   list-style: none;
-}
-
-.list__element--container {
   width: 350px;
   height: 350px;
   background-color: rgb(207, 207, 207);
@@ -17,7 +14,30 @@ body {
   margin: 10px;
 }
 
+.list__element--favorite {
+  background-color: red;
+}
+
 .list__element--image {
   width: 300px;
   height: 300px;
+}
+
+.fav-show {
+  list-style: none;
+  &--image {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.favorites {
+  width: 40%;
+}
+
+.form {
+  width: 40%;
+}
+.page__main {
+  display: flex;
 }
