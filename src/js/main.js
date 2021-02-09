@@ -29,6 +29,7 @@ function paintShows() {
     const showImage = shows.show.image;
 
     htmlCode += '<li class="list__element">';
+    htmlCode += '<div class="list__element--container">';
     if (showImage === null) {
       htmlCode +=
         '<img class="list__element--image" src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV" alt="poster of series is missing" />';
@@ -37,6 +38,7 @@ function paintShows() {
       htmlCode += `<img class="list__element--image" src="${showImage.original}" alt="poster of series" />`;
       htmlCode += `<h2>${showName}</h2>`;
     }
+    htmlCode += '<div>';
     htmlCode += '</li>';
     showContainer.innerHTML = htmlCode;
   }

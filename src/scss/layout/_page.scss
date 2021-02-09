@@ -9,6 +9,14 @@ body {
   list-style: none;
 }
 
+.list__element--container {
+  width: 350px;
+  height: 350px;
+  background-color: rgb(207, 207, 207);
+  padding: 10px;
+  margin: 10px;
+}
+
 .list__element--image {
   width: 300px;
   height: 300px;
