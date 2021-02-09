@@ -85,39 +85,45 @@ function listenContainerElement() {
 function handleShow(ev) {
   const clickedShowId = ev.currentTarget.id;
   //console.log('clicked', clickedShowId);
-  /*   let resultShows = [];
-let favoriteShows = []; */
-  /*  for (const shows of resultShows) {
-    console.log(shows.show.id);
-    if (shows.show.id == clickedShowId) {
-      console.log('Hola');
-    }
-    console.log(favoriteShows);
-  } */
-  const showFound = resultShows.find(function (shows) {
-    const showId = shows.show.id;
-    //console.log(show);
-    //console.log(showId);
-    return showId == clickedShowId;
+
+  const favoritesFound = favoriteShows.find(function (favoriteShow) {
+    const favoriteShowId = favoriteShow.show.id;
+    return favoriteShowId == clickedShowId;
   });
-  //console.log('Finally', showFound);
-  favoriteShows.push(showFound);
-  //console.log(favoriteShows);
+  if (favoritesFound === undefined) {
+    const showFound = resultShows.find(function (shows) {
+      const showId = shows.show.id;
+      return showId == clickedShowId;
+    });
+    favoriteShows.push(showFound);
+  } else {
+    //splice need index
+    const favFoundIndex = favoriteShows.findIndex(function (favoriteShow) {
+      const favoriteShowId = favoriteShow.show.id;
+      return favoriteShowId == clickedShowId;
+    });
+    favoriteShows.splice(favFoundIndex, 1);
+  }
+
   paintShows();
-  //push: need show
-  //splice need index
 
   //paint favorite series
 
   function paintfavorites() {
     let htmlCode = '';
     for (const favoriteShow of favoriteShows) {
-      console.log(favoriteShow.show.name);
+      //console.log(favoriteShow.show.name);
       const favShowName = favoriteShow.show.name;
       const favshowImage = favoriteShow.show.image;
       htmlCode += `<li class="fav-show">`;
-      htmlCode += `<img class="fav-show--image" src="${favshowImage.original}" alt="poster of series" />`;
-      htmlCode += `<h4>${favShowName}</h4>`;
+      let source;
+      if (favshowImage === null) {
+        source = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
+      } else {
+        source = `${favshowImage.original}`;
+      }
+      htmlCode += `<img class="fav-show--image" src="${source}" alt="poster of favorite series" />`;
+      htmlCode += `<h4 class="fav-show-title">${favShowName}</h4>`;
       htmlCode += '</li>';
     }
     favoriteContainer.innerHTML = htmlCode;
