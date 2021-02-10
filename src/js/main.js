@@ -19,7 +19,6 @@ function searchSeries() {
     .then((response) => response.json())
     .then((data) => {
       resultShows = data;
-      //console.log(resultShows);
       paintShows();
     });
 }
@@ -32,21 +31,20 @@ function paintShows() {
     const showName = shows.show.name.toUpperCase();
     const showImage = shows.show.image;
     const showID = shows.show.id;
-    //console.log(showID);
     let isFavoriteClass;
     if (isFavoriteShow(shows)) {
-      isFavoriteClass = 'list__element--favorite';
+      isFavoriteClass = 'container__list--favorite';
     } else {
       isFavoriteClass = '';
     }
-    htmlCode += `<li class="list__element js-container ${isFavoriteClass}" id="${showID}">`;
+    htmlCode += `<li class="container__list js-container ${isFavoriteClass}" id="${showID}">`;
     let source;
     if (showImage === null) {
       source = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
     } else {
       source = `${showImage.original}`;
     }
-    htmlCode += `<img class="list__element--image" src="${source}" alt="poster of series" />`;
+    htmlCode += `<img class="container__list--image" src="${source}" alt="poster of series" />`;
     htmlCode += `<h2>${showName}</h2>`;
     htmlCode += '</li>';
   }
@@ -57,11 +55,9 @@ function paintShows() {
 function isFavoriteShow(shows) {
   const favoriteFound = favoriteShows.find(function (favoriteShow) {
     const favShow = favoriteShow.show;
-    //console.log(favShow);
     const show = shows.show;
     return favShow.id === show.id;
   });
-  //console.log(favoriteFound);
   if (favoriteFound === undefined) {
     return false;
   } else {
@@ -81,12 +77,10 @@ function listenContainerElement() {
     //console.log(containerElement);
     containerElement.addEventListener('click', handleShow);
   }
-  //console.log(containerElements);
 }
 
 function handleShow(ev) {
   const clickedShowId = ev.currentTarget.id;
-  //console.log('clicked', clickedShowId);
 
   const favoritesFound = favoriteShows.find(function (favoriteShow) {
     const favoriteShowId = favoriteShow.show.id;
@@ -118,14 +112,14 @@ function paintfavorites() {
   for (const favoriteShow of favoriteShows) {
     const favShowName = favoriteShow.show.name;
     const favshowImage = favoriteShow.show.image;
-    htmlCode += `<li class="fav-show">`;
+    htmlCode += `<li class="favorites__list">`;
     let source;
     if (favshowImage === null) {
       source = 'https://via.placeholder.com/210x295/ffffff/666666/?text=TV';
     } else {
       source = `${favshowImage.original}`;
     }
-    htmlCode += `<img class="fav-show--image" src="${source}" alt="poster of favorite series" />`;
+    htmlCode += `<img class="favorites__list--image" src="${source}" alt="poster of favorite series" />`;
     htmlCode += `<h4 class="fav-show-title">${favShowName}</h4>`;
     htmlCode += '</li>';
   }
@@ -145,7 +139,6 @@ formElement.addEventListener('submit', handleForm);
 
 function storeLocalStorage() {
   const stringfavoriteShows = JSON.stringify(favoriteShows);
-  console.log(favoriteShows);
   localStorage.setItem('favoriteShowsSaved', stringfavoriteShows);
 }
 

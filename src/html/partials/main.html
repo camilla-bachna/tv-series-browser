@@ -1,24 +1,17 @@
 <main class="page__main">
-  <div class="favorites">
-    <h3>Mis series favoritas:</h3>
-    <ul class="js-favorite-container"></ul>
+  <div class="main__favorites">
+    <h3 class="main__favorites--title">Mis series favoritas:</h3>
+    <ul class="js-favorite-container favorites"></ul>
   </div>
   <form class="js-form form">
     <input
       type="text"
       name="search-field"
       id="search-field"
-      class="js-input"
+      class="js-input form__input"
       placeholder="Busca aqui series"
     />
-    <input type="button" value="Search" class="js-button" />
-    <ul class="js-show-container">
-      <!-- Código de JS listado de resultados de búsqueda-->
-      <!--  <li>
-        <img c src="" alt="poster of series" />
-        <h2></h2>
-      </li> -->
-      <!-- Fin código de JS -->
-    </ul>
+    <input type="button" value="Search" class="js-button form__button" />
+    <ul class="js-show-container container"></ul>
   </form>
 </main>

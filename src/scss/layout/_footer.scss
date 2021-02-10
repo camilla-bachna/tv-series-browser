@@ -1,8 +1,11 @@
 .page__footer {
   position: fixed;
+  z-index: 1;
   left: 0;
   bottom: 0;
-  width: 100vw;
-  padding: 1rem;
-  color: $color-secondary;
+  width: 100%;
+  background-color: white;
+  border-top: grey 1px solid;
+  color: #999;
+  padding: 10px;
 }

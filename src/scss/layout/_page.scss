@@ -1,50 +1,5 @@
 body {
-  padding: 2rem;
   height: 100vh;
-  background-color: $color-bg;
+  background-color: #f3f4f5;
   font-family: $font-main;
-}
-
-.list__element {
-  list-style: none;
-  width: 350px;
-  height: 350px;
-  background-color: rgb(207, 207, 207);
-  color: rgb(24, 153, 99);
-  padding: 10px;
-  margin: 10px;
-}
-
-.list__element--favorite {
-  background-color: rgb(24, 153, 99);
-  color: rgb(207, 207, 207);
-}
-
-.list__element--image {
-  width: 300px;
-  height: 300px;
-}
-
-.fav-show {
-  list-style: none;
-  background-color: rgb(207, 207, 207);
-  width: 250px;
-  height: 250px;
-  padding: 10px;
-  margin: 10px;
-  &--image {
-    width: 200px;
-    height: 200px;
-  }
-}
-
-.favorites {
-  width: 40%;
-}
-
-.form {
-  width: 40%;
-}
-.page__main {
-  display: flex;
 }

@@ -1,0 +1,15 @@
+.page__header {
+  background-color: rgb(24, 153, 99);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  &--title {
+    color: white;
+    padding: 20px 10px;
+  }
+  &--icon {
+    color: white;
+    font-size: 20px;
+  }
+}
