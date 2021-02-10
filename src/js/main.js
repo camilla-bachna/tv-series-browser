@@ -9,8 +9,6 @@ const favoriteContainer = document.querySelector('.js-favorite-container');
 let resultShows = [];
 let favoriteShows = [];
 
-getLocalStorageShows();
-
 //get data from api
 
 function searchSeries() {
@@ -23,7 +21,7 @@ function searchSeries() {
     });
 }
 
-//paint searchResult
+//paint search result
 
 function paintShows() {
   let htmlCode = '';
@@ -52,6 +50,8 @@ function paintShows() {
   listenContainerElement();
 }
 
+//favorite show
+
 function isFavoriteShow(shows) {
   const favoriteFound = favoriteShows.find(function (favoriteShow) {
     const favShow = favoriteShow.show;
@@ -70,11 +70,10 @@ buttonElement.addEventListener('click', searchSeries);
 //listen containerElements
 
 function listenContainerElement() {
-  //listen click container div (incl. name and image) with querySelectorAll, have to listen to events after they have been created (after innerHTML)
+  //listen click container div, listen to events after they have been created (after innerHTML)
   const containerElements = document.querySelectorAll('.js-container');
   //to every containerElement add addEventListener
   for (const containerElement of containerElements) {
-    //console.log(containerElement);
     containerElement.addEventListener('click', handleShow);
   }
 }
@@ -103,9 +102,9 @@ function handleShow(ev) {
 
   paintShows();
   paintfavorites();
-
-  //paint favorite series
 }
+
+//paint favorite series
 
 function paintfavorites() {
   let htmlCode = '';
@@ -120,7 +119,7 @@ function paintfavorites() {
       source = `${favshowImage.original}`;
     }
     htmlCode += `<img class="favorites__list--image" src="${source}" alt="poster of favorite series" />`;
-    htmlCode += `<h4 class="fav-show-title">${favShowName}</h4>`;
+    htmlCode += `<h4 class="favorites__list--title">${favShowName}</h4>`;
     htmlCode += '</li>';
   }
   favoriteContainer.innerHTML = htmlCode;
@@ -145,10 +144,26 @@ function storeLocalStorage() {
 function getLocalStorageShows() {
   const localStorageShows = localStorage.getItem('favoriteShowsSaved');
   if (localStorageShows === null) {
-    paintfavorites();
+    //paintfavorites();
   } else {
     const arrayShows = JSON.parse(localStorageShows);
     favoriteShows = arrayShows;
     paintfavorites();
   }
 }
+
+getLocalStorageShows();
+
+//reset all
+
+const resetButton = document.querySelector('.js-reset-button');
+
+function resetAll() {
+  localStorage.removeItem('favoriteShowsSaved');
+  let htmlCode = '';
+  favoriteContainer.innerHTML = htmlCode;
+  favoriteShows = [];
+  paintShows();
+}
+
+resetButton.addEventListener('click', resetAll);

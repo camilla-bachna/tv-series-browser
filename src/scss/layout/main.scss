@@ -24,6 +24,15 @@
       height: 200px;
     }
   }
+  &__button {
+    height: 40px;
+    width: 70px;
+    background-color: rgb(24, 153, 99);
+    border-radius: 6px;
+    color: white;
+    font-size: 18px;
+    margin-bottom: 50px;
+  }
 }
 
 .form {
