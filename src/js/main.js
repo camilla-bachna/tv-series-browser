@@ -175,16 +175,15 @@ resetButton.addEventListener('click', resetAll);
 
 function handleX(ev) {
   const xfavoriteElementId = parseInt(ev.currentTarget.id);
-  //console.log(xfavoriteElement);
   const favoriteX = favoriteShows.findIndex(function (favoriteShow) {
     const favoriteShowId = favoriteShow.show.id;
     return favoriteShowId === xfavoriteElementId;
   });
-  console.log(favoriteX);
   if (favoriteX !== -1) {
     //splice
     favoriteShows.splice(favoriteX, 1);
     paintfavorites();
+    paintShows();
   }
 }
 
