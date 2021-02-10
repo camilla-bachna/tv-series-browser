@@ -8,37 +8,37 @@
       href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
       rel="stylesheet"
     />
+    <script
+      src="https://kit.fontawesome.com/f2e0e49a34.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="stylesheet" href="./assets/css/main.css" />
   </head>
 
   <body>
     <div class="page">
       <header class="page__header">
-        <h1>Buscador de series</h1>
+        <i class="fas fa-search page__header--icon"></i>
+        <h1 class="page__header--title">Buscador de series</h1>
+        <i class="fas fa-tv page__header--icon"></i>
       </header>
 
       <main class="page__main">
-        <div class="favorites">
-          <h3>Mis series favoritas:</h3>
-          <ul class="js-favorite-container"></ul>
+        <div class="main__favorites">
+          <h3 class="main__favorites--title">Mis series favoritas:</h3>
+          <ul class="js-favorite-container favorites"></ul>
+          <button class="favorites__button js-reset-button">Borrar</button>
         </div>
         <form class="js-form form">
           <input
             type="text"
             name="search-field"
             id="search-field"
-            class="js-input"
+            class="js-input form__input"
             placeholder="Busca aqui series"
           />
-          <input type="button" value="Search" class="js-button" />
-          <ul class="js-show-container">
-            <!-- Código de JS listado de resultados de búsqueda-->
-            <!--  <li>
-              <img c src="" alt="poster of series" />
-              <h2></h2>
-            </li> -->
-            <!-- Fin código de JS -->
-          </ul>
+          <input type="button" value="Search" class="js-button form__button" />
+          <ul class="js-show-container container"></ul>
         </form>
       </main>
 
