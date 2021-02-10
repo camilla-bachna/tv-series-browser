@@ -79,23 +79,23 @@ function listenContainerElement() {
 }
 
 function handleShow(ev) {
-  const clickedShowId = ev.currentTarget.id;
+  const clickedShowId = parseInt(ev.currentTarget.id);
 
   const favoritesFound = favoriteShows.find(function (favoriteShow) {
     const favoriteShowId = favoriteShow.show.id;
-    return favoriteShowId == clickedShowId;
+    return favoriteShowId === clickedShowId;
   });
   if (favoritesFound === undefined) {
     const showFound = resultShows.find(function (shows) {
       const showId = shows.show.id;
-      return showId == clickedShowId;
+      return showId === clickedShowId;
     });
     favoriteShows.push(showFound);
   } else {
-    //splice need index
+    //splice
     const favFoundIndex = favoriteShows.findIndex(function (favoriteShow) {
       const favoriteShowId = favoriteShow.show.id;
-      return favoriteShowId == clickedShowId;
+      return favoriteShowId === clickedShowId;
     });
     favoriteShows.splice(favFoundIndex, 1);
   }
@@ -108,9 +108,11 @@ function handleShow(ev) {
 
 function paintfavorites() {
   let htmlCode = '';
+
   for (const favoriteShow of favoriteShows) {
     const favShowName = favoriteShow.show.name;
     const favshowImage = favoriteShow.show.image;
+    const favshowId = favoriteShow.show.id;
     htmlCode += `<li class="favorites__list">`;
     let source;
     if (favshowImage === null) {
@@ -119,11 +121,15 @@ function paintfavorites() {
       source = `${favshowImage.original}`;
     }
     htmlCode += `<img class="favorites__list--image" src="${source}" alt="poster of favorite series" />`;
+
     htmlCode += `<h4 class="favorites__list--title">${favShowName}</h4>`;
     htmlCode += '</li>';
+    htmlCode += `<div class="favorites__list--x js-x" id="${favshowId}">x`;
+    htmlCode += `</div>`;
   }
   favoriteContainer.innerHTML = htmlCode;
   storeLocalStorage();
+  listenContainerElementX();
 }
 
 //submit form
@@ -143,9 +149,7 @@ function storeLocalStorage() {
 
 function getLocalStorageShows() {
   const localStorageShows = localStorage.getItem('favoriteShowsSaved');
-  if (localStorageShows === null) {
-    //paintfavorites();
-  } else {
+  if (localStorageShows !== null) {
     const arrayShows = JSON.parse(localStorageShows);
     favoriteShows = arrayShows;
     paintfavorites();
@@ -160,10 +164,33 @@ const resetButton = document.querySelector('.js-reset-button');
 
 function resetAll() {
   localStorage.removeItem('favoriteShowsSaved');
-  let htmlCode = '';
-  favoriteContainer.innerHTML = htmlCode;
   favoriteShows = [];
+  paintfavorites();
   paintShows();
 }
 
 resetButton.addEventListener('click', resetAll);
+
+// click x
+
+function handleX(ev) {
+  const xfavoriteElementId = parseInt(ev.currentTarget.id);
+  //console.log(xfavoriteElement);
+  const favoriteX = favoriteShows.findIndex(function (favoriteShow) {
+    const favoriteShowId = favoriteShow.show.id;
+    return favoriteShowId === xfavoriteElementId;
+  });
+  console.log(favoriteX);
+  if (favoriteX !== -1) {
+    //splice
+    favoriteShows.splice(favoriteX, 1);
+    paintfavorites();
+  }
+}
+
+function listenContainerElementX() {
+  const xElements = document.querySelectorAll('.js-x');
+  for (const xElement of xElements) {
+    xElement.addEventListener('click', handleX);
+  }
+}

@@ -12,6 +12,9 @@
 }
 
 .favorites {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
   &__list {
     list-style: none;
     background-color: rgb(207, 207, 207);
@@ -22,6 +25,14 @@
     &--image {
       width: 200px;
       height: 200px;
+    }
+    &--x {
+      background-color: rgb(24, 153, 99);
+      text-align: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 610px;
+      color: white;
     }
   }
   &__button {
