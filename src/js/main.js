@@ -43,8 +43,9 @@ function paintShows() {
       source = `${showImage.original}`;
     }
     htmlCode += `<img class="container__list--image" src="${source}" alt="poster of series" />`;
-    htmlCode += `<h2>${showName}</h2>`;
-    htmlCode += `<h3>${shows.show.genres}</h3>`;
+    htmlCode += `<h2 class="container__list--title ${isFavoriteClass}">${showName}</h2>`;
+    htmlCode += `<h3 class="container__list--genre ${isFavoriteClass}">${shows.show.genres}</h3>`;
+    /* htmlCode += `<span class="container__list--hidden-box">${shows.show.genres}</span>`; */
     htmlCode += '</li>';
   }
   showContainer.innerHTML = htmlCode;
@@ -79,10 +80,29 @@ function listenContainerElement() {
   }
 }
 
-function handleShow() {
-  for (const shows of resultShows) {
-    console.log(shows.show.name);
+function handleShow(ev) {
+  const clickedShowId = parseInt(ev.currentTarget.id);
+
+  const favoritesFound = favoriteShows.find(function (favoriteShow) {
+    const favoriteShowId = favoriteShow.show.id;
+    return favoriteShowId === clickedShowId;
+  });
+  if (favoritesFound === undefined) {
+    const showFound = resultShows.find(function (shows) {
+      const showId = shows.show.id;
+      return showId === clickedShowId;
+    });
+    favoriteShows.push(showFound);
+  } else {
+    //splice
+    const favFoundIndex = favoriteShows.findIndex(function (favoriteShow) {
+      const favoriteShowId = favoriteShow.show.id;
+      return favoriteShowId === clickedShowId;
+    });
+    favoriteShows.splice(favFoundIndex, 1);
   }
+  paintShows();
+  paintfavorites();
 }
 
 //paint favorite series

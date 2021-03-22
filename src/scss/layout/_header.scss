@@ -1,15 +1,33 @@
 .page__header {
-  background-color: rgb(24, 153, 99);
+  background-color: rgb(23, 86, 118);
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  border-bottom: 2px solid black;
   &--title {
     color: white;
     padding: 20px 10px;
+    font-size: 45px;
+    background-color: rgb(23, 86, 118);
+    text-shadow: 3px 3px rgb(11, 41, 56);
+    animation: title 1.5s ease-in;
   }
   &--icon {
+    background-color: rgb(23, 86, 118);
     color: white;
-    font-size: 20px;
+    font-size: 22px;
+    margin: 3px;
+    padding-top: 4px;
+  }
+}
+@keyframes title {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }

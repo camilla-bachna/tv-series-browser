@@ -6,6 +6,9 @@
   width: 100%;
   background-color: white;
   border-top: grey 1px solid;
-  color: #999;
+  color: rgb(23, 86, 118);
   padding: 10px;
+  &--small {
+    background-color: white;
+  }
 }
