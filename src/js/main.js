@@ -45,7 +45,6 @@ function paintShows() {
     htmlCode += `<img class="container__list--image" src="${source}" alt="poster of series" />`;
     htmlCode += `<h2 class="container__list--title ${isFavoriteClass}">${showName}</h2>`;
     htmlCode += `<h3 class="container__list--genre ${isFavoriteClass}">${shows.show.genres}</h3>`;
-    /* htmlCode += `<span class="container__list--hidden-box">${shows.show.genres}</span>`; */
     htmlCode += '</li>';
   }
   showContainer.innerHTML = htmlCode;
