@@ -12,7 +12,7 @@ Con una equilibrada mezcla de HTML, CSS, JavaScript y API. Gracias al Starter Ki
 ## Descárgate el repositorio:
 
 - Descarga el [respositorio](https://github.com/camilla-bachna/tv-series-browser.git) de GitHub.
-- Abre una terminal y instala las dependencias locales ejecutando en la terminal el comando:
+- Abre una terminal e instala las dependencias locales ejecutando en la terminal el comando:
 
 ```bash
 npm install
@@ -63,4 +63,4 @@ Si te gusta este trabajo, no dudes en **ponerte en contacto con migo**. Pincha e
 
 ## Visita la página 💻:
 
-Y por último, para ver la página, pincha en el siguiente enlace: [TV series browser](http://beta.adalab.es/modulo-2-evaluacion-final-camilla-bachna/ 'TV series browser').
+Y por último, para ver la página, pincha en el siguiente enlace: [TV series browser](https://camilla-bachna.github.io/tv-series-browser/ 'TV series browser').
