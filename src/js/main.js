@@ -13,7 +13,7 @@ let favoriteShows = [];
 
 function searchSeries() {
   const userInput = inputElement.value.toUpperCase();
-  fetch('http://api.tvmaze.com/search/shows?q=' + userInput)
+  fetch('https://api.tvmaze.com/search/shows?q=' + userInput)
     .then((response) => response.json())
     .then((data) => {
       resultShows = data;
